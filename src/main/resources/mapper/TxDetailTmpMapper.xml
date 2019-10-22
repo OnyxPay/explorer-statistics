@@ -43,12 +43,12 @@
     <select id="selectOntAmountInOneDay" resultType="DECIMAL">
         SELECT SUM(amount)
         FROM tbl_tx_detail_tmp
-        WHERE asset_name = 'ont'
+        WHERE asset_name = 'onyx'
     </select>
     <select id="selectOngAmountInOneDay" resultType="DECIMAL">
         SELECT SUM(amount)
         FROM tbl_tx_detail_tmp
-        WHERE asset_name = 'ong'
+        WHERE asset_name = 'oxg'
     </select>
     <select id="selectAddressInOneDay" resultType="String">
         SELECT DISTINCT(address)

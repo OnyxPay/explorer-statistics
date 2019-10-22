@@ -15,25 +15,33 @@
 
 package com.github.ontio.explorer.statistics.service;
 
-import com.alibaba.fastjson.JSON;
-import com.github.ontio.explorer.statistics.common.ParamsConfig;
-import com.github.ontio.explorer.statistics.common.Constants;
-import com.github.ontio.explorer.statistics.mapper.*;
-import com.github.ontio.explorer.statistics.model.AddressDailySummary;
-import com.github.ontio.explorer.statistics.model.Contract;
-import com.github.ontio.explorer.statistics.model.ContractDailySummary;
-import com.github.ontio.explorer.statistics.model.DailySummary;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.alibaba.fastjson.JSON;
+import com.github.ontio.explorer.statistics.common.Constants;
+import com.github.ontio.explorer.statistics.common.ParamsConfig;
+import com.github.ontio.explorer.statistics.mapper.AddressDailySummaryMapper;
+import com.github.ontio.explorer.statistics.mapper.BlockMapper;
+import com.github.ontio.explorer.statistics.mapper.ContractDailySummaryMapper;
+import com.github.ontio.explorer.statistics.mapper.ContractMapper;
+import com.github.ontio.explorer.statistics.mapper.DailySummaryMapper;
+import com.github.ontio.explorer.statistics.mapper.OntidTxDetailMapper;
+import com.github.ontio.explorer.statistics.mapper.TxDetailDailyMapper;
+import com.github.ontio.explorer.statistics.mapper.TxDetailTmpMapper;
+import com.github.ontio.explorer.statistics.model.AddressDailySummary;
+import com.github.ontio.explorer.statistics.model.Contract;
+import com.github.ontio.explorer.statistics.model.ContractDailySummary;
+import com.github.ontio.explorer.statistics.model.DailySummary;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @NoArgsConstructor
@@ -162,12 +170,12 @@ public class StatisticsService {
 
     private BigDecimal getDailyOntSum() {
         BigDecimal dailyOntAmount = txDetailTmpMapper.selectOntAmountInOneDay();
-        return dailyOntAmount == null ? new BigDecimal(0) : dailyOntAmount;
+        return dailyOntAmount == null ? new BigDecimal(0) : dailyOntAmount.scaleByPowerOfTen(-Constants.ONT_DECIMAL);
     }
 
     private BigDecimal getDailyOngSum() {
         BigDecimal dailyOngAmount = txDetailTmpMapper.selectOngAmountInOneDay();
-        return dailyOngAmount == null ? new BigDecimal(0) : dailyOngAmount.divide(Constants.ONG_TOTAL, 9, RoundingMode.HALF_DOWN);
+        return dailyOngAmount == null ? new BigDecimal(0) : dailyOngAmount.scaleByPowerOfTen(-Constants.ONG_DECIMAL);
     }
 
     private BigDecimal getDailyOntSum(String contractHash) {
@@ -182,13 +190,13 @@ public class StatisticsService {
 
     private BigDecimal getOneDayOngSum(String contractHash) {
         BigDecimal ongCount = txDetailTmpMapper.selectContractAssetAmount(contractHash, Constants.ONG);
-        return ongCount == null ? new BigDecimal(0) : ongCount.divide(Constants.ONG_TOTAL, 9, RoundingMode.HALF_DOWN);
+        return ongCount == null ? new BigDecimal(0) : ongCount.scaleByPowerOfTen(-Constants.ONG_DECIMAL);
     }
 
 
     private BigDecimal getDailyOngSum(String contractHash) {
         BigDecimal ongCount = txDetailDailyMapper.selectContractAssetAmount(contractHash, Constants.ONG);
-        return ongCount == null ? new BigDecimal(0) : ongCount.divide(Constants.ONG_TOTAL, 9, RoundingMode.HALF_DOWN);
+        return ongCount == null ? new BigDecimal(0) : ongCount.scaleByPowerOfTen(-Constants.ONG_DECIMAL);
     }
 
     private int getDailyTxSum(String contractHash) {

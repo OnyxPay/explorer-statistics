@@ -18,7 +18,7 @@ package com.github.ontio.explorer.statistics.common;
 import java.math.BigDecimal;
 
 public class Constants {
-    public static final int GENESIS_TIME = 1530316800;
+    public static final int GENESIS_TIME = 1546300800;
 
     public static final int ONE_DAY_IN_SEC = 86400;
 
@@ -28,7 +28,9 @@ public class Constants {
 
     public static final BigDecimal ZERO = new BigDecimal("0");
 
-    public static final BigDecimal ONG_TOTAL = new BigDecimal("1000000000");
+    public static final int ONT_DECIMAL = 8;
+
+    public static final int ONG_DECIMAL = 9;
 
     public static final String ADDR_DAILY_SUMMARY_NATIVETYPE = "0000000000000000000000000000000000000000";
 
