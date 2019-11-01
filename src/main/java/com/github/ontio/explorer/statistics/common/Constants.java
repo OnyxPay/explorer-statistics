@@ -22,9 +22,9 @@ public class Constants {
 
     public static final int ONE_DAY_IN_SEC = 86400;
 
-    public static final String ONT = "ont";
+    public static final String ONYX = "onyx";
 
-    public static final String ONG = "ong";
+    public static final String OXG = "oxg";
 
     public static final BigDecimal ZERO = new BigDecimal("0");
 
