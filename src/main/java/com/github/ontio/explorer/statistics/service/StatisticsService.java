@@ -179,23 +179,23 @@ public class StatisticsService {
     }
 
     private BigDecimal getDailyOntSum(String contractHash) {
-        BigDecimal ontCount = txDetailDailyMapper.selectContractAssetAmount(contractHash, Constants.ONT);
+        BigDecimal ontCount = txDetailDailyMapper.selectContractAssetAmount(contractHash, Constants.ONYX);
         return ontCount == null ? new BigDecimal(0) : ontCount;
     }
 
     private BigDecimal getOneDayOntSum(String contractHash) {
-        BigDecimal ontCount = txDetailTmpMapper.selectContractAssetAmount(contractHash, Constants.ONT);
+        BigDecimal ontCount = txDetailTmpMapper.selectContractAssetAmount(contractHash, Constants.ONYX);
         return ontCount == null ? new BigDecimal(0) : ontCount;
     }
 
     private BigDecimal getOneDayOngSum(String contractHash) {
-        BigDecimal ongCount = txDetailTmpMapper.selectContractAssetAmount(contractHash, Constants.ONG);
+        BigDecimal ongCount = txDetailTmpMapper.selectContractAssetAmount(contractHash, Constants.OXG);
         return ongCount == null ? new BigDecimal(0) : ongCount.scaleByPowerOfTen(-Constants.ONG_DECIMAL);
     }
 
 
     private BigDecimal getDailyOngSum(String contractHash) {
-        BigDecimal ongCount = txDetailDailyMapper.selectContractAssetAmount(contractHash, Constants.ONG);
+        BigDecimal ongCount = txDetailDailyMapper.selectContractAssetAmount(contractHash, Constants.OXG);
         return ongCount == null ? new BigDecimal(0) : ongCount.scaleByPowerOfTen(-Constants.ONG_DECIMAL);
     }
 
