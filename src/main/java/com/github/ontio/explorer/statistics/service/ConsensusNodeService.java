@@ -235,7 +235,12 @@ public class ConsensusNodeService {
             BigDecimal currentPos = new BigDecimal(node.getInitPos()).add(new BigDecimal(node.getTotalPos()));
             BigDecimal targetPos = new BigDecimal(node.getInitPos()).add(new BigDecimal(node.getMaxAuthorize()));
             node.setCurrentStake(currentPos.longValue());
-            node.setProgress(currentPos.multiply(new BigDecimal(100)).divide(targetPos, 2, RoundingMode.HALF_UP) + "%");
+            if (targetPos == BigDecimal.ZERO) {
+                // Quick fix for ONXP-1866
+                node.setProgress("100%");
+            } else {
+                node.setProgress(currentPos.multiply(new BigDecimal(100)).divide(targetPos, 2, RoundingMode.HALF_UP) + "%");
+            }
             node.setDetailUrl(paramsConfig.getConsensusNodeDetailUrl() + node.getPublicKey());
             BigDecimal percent = new BigDecimal(node.getCurrentStake()).multiply(new BigDecimal(100)).divide(new BigDecimal(1000000000), 4, RoundingMode.HALF_UP);
             node.setCurrentStakePercentage(percent.toPlainString().concat("%"));
