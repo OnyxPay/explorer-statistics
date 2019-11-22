@@ -8,9 +8,9 @@
         <version>2.1.4.RELEASE</version>
         <relativePath/>
     </parent>
-    <groupId>com.github.ontio.explorer</groupId>
+    <groupId>com.github.onyxpay</groupId>
     <artifactId>statistics</artifactId>
-    <version>1.2.0.RELEASE</version>
+    <version>1.3.1</version>
     <name>explorer-statistics</name>
     <description>Statistics project for ontology explorer</description>
 

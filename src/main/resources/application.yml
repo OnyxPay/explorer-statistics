@@ -36,16 +36,11 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 server:
-  port: 8090
+  port: 8093
   tomcat:
     uri-encoding: UTF-8
 
 config:
-  hosts:
-    - http://dappnode1.ont.io:20334
-    - http://dappnode2.ont.io:20334
-    - http://dappnode3.ont.io:20334
-    - http://dappnode4.ont.io:20334
   consensus-node-detail-url: https://explorer.onyxpay.co/nodes/detail/
   node-map-url: http://52.77.140.175:8888/api/nodes
   is-test-net: false
