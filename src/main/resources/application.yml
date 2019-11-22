@@ -46,7 +46,7 @@ config:
     - http://dappnode2.ont.io:20334
     - http://dappnode3.ont.io:20334
     - http://dappnode4.ont.io:20334
-  consensus-node-detail-url: https://explorer.ont.io/nodes/detail/
+  consensus-node-detail-url: https://explorer.onyxpay.co/nodes/detail/
   node-map-url: http://52.77.140.175:8888/api/nodes
   is-test-net: false
   new-staking-round-block-count: 120000
